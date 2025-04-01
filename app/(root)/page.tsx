@@ -1,13 +1,18 @@
-import Hello from "@/app/comoponets/hello";
+import Image from "next/image";
 
-export default function Home() {
-  console.log("What am i doing here?");
+
+export default async function Home() {
+  const response = await fetch("https://jsonplaceholder.typicode.com/albums");
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  const data = await response.json();
 
   return (
     <>
-      <h1>Welcome to Next.js!</h1>
-      
-      <Hello />
+      <div>
+        <h1>HOME</h1>
+      </div>
     </>
   );
 }
