@@ -15,7 +15,8 @@ const navigation = [
   { name: 'Contact ', href: '#', current: false },
 ]
 
-function classNames(...classes) {
+
+function classNames(...classes: (string | undefined | null)[]) {
   return classes.filter(Boolean).join(' ')
 }
 
@@ -46,17 +47,14 @@ export default function Navigation() {
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
-                {navigation.map((item) => (
-                  <a
+                {navigation.map((item) => (                
+                    <Link href={item.href} 
                     key={item.name}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
                       item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                       'rounded-md px-3 py-2 text-sm font-medium',
-                    )}
-                  >
-                    <Link href={item.href} >{item.name}</Link>
-                  </a>
+                    )}>{item.name}</Link>
                 ))}
               </div>
             </div>
