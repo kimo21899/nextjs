@@ -11,7 +11,7 @@ export default async function Home() {
   return (
     <>
       <div>
-        <img src="https://image.tving.com/ntgs/operation/banner/2025/02/25/1740445979_1.jpg/dims/resize/F_webp,1920" alt="banner" 
+        <Image src="https://image.tving.com/ntgs/operation/banner/2025/02/25/1740445979_1.jpg/dims/resize/F_webp,1920" alt="banner" 
         className="w-full h-130 object-cover rounded-[5px] mb-4" />
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-8 gap-4">
@@ -21,7 +21,7 @@ export default async function Home() {
               className="relative max-w-xs overflow-hidden bg-cover bg-no-repeat"
               data-twe-ripple-init
               data-twe-ripple-color="light">
-              <img
+              <Image
                 src="https://image.tmdb.org/t/p/w780/mClzWv7gBqgXfjZXp49Enyoex1v.jpg"
                 className="hovoer:opacity-50 transition-all duration-300 ease-in-out rounded-[5px]"
                 alt="Louvre" />

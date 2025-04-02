@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import Image from "next/image";
 
 const navigation = [
   { name: 'Home', href: '/', current: true },
@@ -39,7 +40,7 @@ export const Navbar = () => {
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
               {/* <Image alt="logo" src="/images/movie_logo.png" width={60} height={60} className="h-8 w-auto" /> */}
-              <img
+              <Image
                   alt="Your Company"
                   // src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
                   src="https://image.tving.com/ntgs/operation/logo/2023/09/18/1695032536_1.svg"
@@ -76,7 +77,7 @@ export const Navbar = () => {
                 <MenuButton className="relative flex rounded-full bg-gray-800 text-sm focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
-                  <img
+                  <Image
                     alt="kimo"
                     src="/kimo.png"
                     // src="https://image.tving.com/upload/profile/default.png/dims/resize/F_webp,100"
