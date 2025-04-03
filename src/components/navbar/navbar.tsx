@@ -45,23 +45,23 @@ export const Navbar = () => {
                   src="/kimo-logo.png"
                   alt="Your Company"
                   layout="intrinsic" 
-                  width={160} 
-                  height={46} 
+                  width={104} 
                   className="h-8 w-auto"
+                  height={30} 
                 />
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (                
                   <Link
-                     href={item.href}
-                     key={item.name}
-                     aria-current={currPath === item.href ? "page" : undefined}
-                     className={classNames(
-                       currPath === item.href ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                       "rounded-md px-3 py-2 text-sm font-medium"
-                     )}
-                   >{item.name}</Link>
+                    href={item.href}
+                    key={item.name}
+                    aria-current={currPath === item.href ? "page" : undefined}
+                    className={classNames(
+                      currPath === item.href ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      "rounded-md px-3 py-2 text-sm font-medium"
+                    )}
+                  >{item.name}</Link>
                 ))}
               </div>
             </div>
