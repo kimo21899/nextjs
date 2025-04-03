@@ -39,15 +39,14 @@ export const Navbar = () => {
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div className="flex shrink-0 items-center">
-              {/* <Image alt="logo" src="/images/movie_logo.png" width={60} height={60} className="h-8 w-auto" /> */}
+            <div className="flex shrink-0 items-center">              
               <Image
                   src="/kimo-logo.png"
-                  alt="Your Company"
-                  layout="intrinsic" 
+                  alt="kimo-logo"
+                  layout="intrinsic"
                   width={104} 
-                  className="h-8 w-auto"
                   height={30} 
+                  className="h-8 w-auto"
                 />
             </div>
             <div className="hidden sm:ml-6 sm:block">
