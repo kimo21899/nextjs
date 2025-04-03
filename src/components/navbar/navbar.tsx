@@ -1,10 +1,10 @@
 "use client"
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -20,8 +20,10 @@ function classNames(...classes: (string | undefined | null)[]) {
 }
 
 export const Navbar = () => {
-  const curr_path = usePathname();
-  console.log(curr_path);
+  const [currPath, setCurrPath] = useState<string | null>(null);
+  useEffect(() => {
+    setCurrPath(window.location.pathname);
+  }, []);
 
   return  (
     <Disclosure as="nav" className="bg-gray-800">
@@ -51,13 +53,15 @@ export const Navbar = () => {
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
                 {navigation.map((item) => (                
-                    <Link href={item.href} 
-                    key={item.name}
-                    aria-current={(item.href==curr_path) ? 'current' : undefined}
-                    className={classNames(
-                      (item.href==curr_path) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'rounded-md px-3 py-2 text-sm font-medium',
-                    )}>{item.name}</Link>
+                  <Link
+                     href={item.href}
+                     key={item.name}
+                     aria-current={currPath === item.href ? "page" : undefined}
+                     className={classNames(
+                       currPath === item.href ? "bg-gray-900 text-white" : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                       "rounded-md px-3 py-2 text-sm font-medium"
+                     )}
+                   >{item.name}</Link>
                 ))}
               </div>
             </div>
@@ -128,9 +132,9 @@ export const Navbar = () => {
               key={item.name}
               as="a"
               href={item.href}
-              aria-current={item.current ? 'page' : undefined}
+              aria-current={(item.href===currPath) ? 'page' : undefined}
               className={classNames(
-                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                (item.href===currPath) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                 'block rounded-md px-3 py-2 text-base font-medium',
               )}
             >
