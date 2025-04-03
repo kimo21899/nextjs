@@ -2,13 +2,18 @@ import Image from "next/image";
 
 
 export default async function Home() {  
-  // const response = await fetch("https://jsonplaceholder.typicode.com/albums");
-  const response = await fetch("http://localhost:3000/movie/movie-list.json");
-  if (!response.ok) {
+  let movies = [];
+  try {
+    const response = await fetch("https://jenny3point0.com/data/movie-list.json");
+    if (!response.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await response.json();
+    movies = Array.isArray(data.itemListElement) ? data.itemListElement : [];
+  } catch (error) {
+    console.error("Error fetching movies:", error);
     throw new Error("Failed to fetch data");
   }
-  const data = await response.json();
-  const movies = data.itemListElement; 
 
   return (
     <div>
@@ -25,44 +30,35 @@ export default async function Home() {
         Top 250 Movies
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-4">        
-        {movies.map((movie, index) => (
-          <div key={index} className="rounded-lg shadow-md">
-            <div
-              className="relative max-w-xs overflow-hidden bg-cover bg-no-repeat"
-              data-twe-ripple-init
-              data-twe-ripple-color="light">
-              <Image
-                src={movie.item.image} 
-                className="hovoer:opacity-50 transition-all duration-300 ease-in-out rounded-[5px]"
-                layout="intrinsic"
-                width={780} 
-                height={1170} 
-                alt={movie.item.name}  />
-              <a href="#!">
-                <div
-                  className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100"></div>
-              </a>
+        {Array.isArray(movies) ? (
+          movies.map((movie, index) => (
+            <div key={index} className="rounded-lg shadow-md">
+              {movie.item && movie.item.image ? (
+                <Image
+                  src={movie.item.image} 
+                  className="hover:opacity-50 transition-all duration-300 ease-in-out rounded-[5px]"
+                  layout="intrinsic"
+                  width={780} 
+                  height={1170} 
+                  alt={movie.item.name || "Movie"} 
+                />
+              ) : (
+                <div className="w-[780px] h-[1170px] bg-gray-300 flex items-center justify-center">
+                  <span className="text-gray-500">No Image</span>
+                </div>
+              )}
+              <div className="flex items-start w-full truncate text-ellipsis text-clip overflow-hidden opacity-80 text-sm">
+                {movie.item?.name || "Unknown"}
+              </div>
+              <div className="text-sm">
+                ⭐ {movie.item?.aggregateRating?.ratingValue ? movie.item.aggregateRating.ratingValue.toFixed(1) : "N/A"}
+              </div>
             </div>
-            {/* <div className="relative w-full h-[300px]">
-              <Image 
-                src={movie.item.image} 
-                alt={movie.item.name} 
-                // layout="intrinsic"
-                fill
-                className="object-cover rounded-md"
-              />
-              <a href="#!">
-                <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden 
-                  bg-[hsl(0,0%,98.4%,0.2)] bg-fixed opacity-0 transition duration-300 ease-in-out hover:opacity-100"></div>
-              </a>
-            </div> */}
-            <div className="flex items-start w-full truncate text-ellipsis text-clip overflow-hidden opacity-80 text-sm">
-              {movie.item.name}            
-            </div>
-            <div className="text-sm">⭐ {movie.item.aggregateRating.ratingValue.toFixed(1)}</div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <div className="text-gray-500">No movies available</div>
+        )}
       </div>
-    </div>
-  );
+    </div> 
+  )
 }
