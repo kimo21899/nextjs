@@ -9,10 +9,15 @@ export default async function Home() {
   const data = await response.json();
 
   return (
-    <>
+    <div>
       <div>
-        <Image src="https://image.tving.com/ntgs/operation/banner/2025/02/25/1740445979_1.jpg/dims/resize/F_webp,1920" alt="banner" 
-        className="w-full h-130 object-cover rounded-[5px] mb-4" />
+        <Image
+          src="https://image.tving.com/ntgs/operation/banner/2025/02/25/1740445979_1.jpg/dims/resize/F_webp,1920" 
+          alt="banner" 
+          layout="intrinsic"
+          width={1920} 
+          height={650} 
+          className="w-full h-130 object-cover rounded-[5px] mb-4" />
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 xl:grid-cols-8 gap-4">
         {data.map((item: { id: number; title: string; thumbnailUrl: string }) => (
@@ -24,6 +29,9 @@ export default async function Home() {
               <Image
                 src="https://image.tmdb.org/t/p/w780/mClzWv7gBqgXfjZXp49Enyoex1v.jpg"
                 className="hovoer:opacity-50 transition-all duration-300 ease-in-out rounded-[5px]"
+                layout="intrinsic"
+                width={780} 
+                height={1170} 
                 alt="Louvre" />
               <a href="#!">
                 <div
@@ -37,6 +45,6 @@ export default async function Home() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

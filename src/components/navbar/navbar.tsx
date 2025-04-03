@@ -7,22 +7,21 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Image from "next/image";
 
 const navigation = [
-  { name: 'Home', href: '/', current: true },
-  { name: 'Movie', href: '/movie', current: false },
-  { name: 'Music', href: '/music', current: false },
-  { name: 'Game', href: '/game', current: false },
-  { name: 'About', href: '/about', current: false },
-  { name: 'Contact ', href: '#', current: false },
+  { name: 'Home', href: '/' },
+  { name: 'Movie', href: '/movie'},
+  { name: 'Music', href: '/music'},
+  { name: 'Game', href: '/game'},
+  { name: 'About', href: '/about'},
+  { name: 'Contact ', href: '/contact'},
 ]
-
 
 function classNames(...classes: (string | undefined | null)[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 export const Navbar = () => {
-  const path = usePathname();
-  console.log(path);
+  const curr_path = usePathname();
+  console.log(curr_path);
 
   return  (
     <Disclosure as="nav" className="bg-gray-800">
@@ -41,9 +40,11 @@ export const Navbar = () => {
             <div className="flex shrink-0 items-center">
               {/* <Image alt="logo" src="/images/movie_logo.png" width={60} height={60} className="h-8 w-auto" /> */}
               <Image
+                  src="/kimo-logo.png"
                   alt="Your Company"
-                  // src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                  src="https://image.tving.com/ntgs/operation/logo/2023/09/18/1695032536_1.svg"
+                  layout="intrinsic" 
+                  width={160} 
+                  height={46} 
                   className="h-8 w-auto"
                 />
             </div>
@@ -52,9 +53,9 @@ export const Navbar = () => {
                 {navigation.map((item) => (                
                     <Link href={item.href} 
                     key={item.name}
-                    aria-current={item.current ? 'page' : undefined}
+                    aria-current={(item.href==curr_path) ? 'current' : undefined}
                     className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      (item.href==curr_path) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                       'rounded-md px-3 py-2 text-sm font-medium',
                     )}>{item.name}</Link>
                 ))}
@@ -80,7 +81,9 @@ export const Navbar = () => {
                   <Image
                     alt="kimo"
                     src="/kimo.png"
-                    // src="https://image.tving.com/upload/profile/default.png/dims/resize/F_webp,100"
+                    layout="intrinsic" 
+                    width={80} 
+                    height={50} 
                     className="size-8 rounded-full"
                   />
                 </MenuButton>

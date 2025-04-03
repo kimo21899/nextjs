@@ -1,16 +1,16 @@
-import { Navbar } from "@/src/components/navbar"
+import { Navbar } from "@/src/components/navbar/navbar"
 
 const MovieLayout = ({ children} : {children: React.ReactNode}) => {
   return (
     <div>
       <Navbar />
-      <div className="p-6">
-      {children}
+      <div className="flex flex-col justify-center items-center p-6">
+        <div className="max-w-[1600]">
+          {children}
+        </div>
       </div>
     </div>
   )
 }
 
 export default MovieLayout
-
-
